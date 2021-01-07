@@ -1,0 +1,32 @@
+body {
+	width: 100vw;
+	height: 100vh;
+	background: #303030;
+	margin: 0 auto;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.App {
+	width: 100%;
+	background: red;
+	margin: 0 auto;
+}
+
+header {
+	width: 100%;
+	background: #266c7e;
+	height: 100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.logo {
+	padding-top: 20px;
+	font-size: 2em;
+	font-weight: bold;
+}
+.slogan {
+	padding-top: 2px;
+	font-size: 1.2em;
+	font-weight: 500;
+}
