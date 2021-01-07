@@ -6,9 +6,12 @@ body {
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
+:root {
+	/* Need to add any reused colors here */
+}
+
 .App {
 	width: 100%;
-	background: red;
 	margin: 0 auto;
 }
 
@@ -29,4 +32,39 @@ header {
 	padding-top: 2px;
 	font-size: 1.2em;
 	font-weight: 500;
+}
+
+.personal-section {
+	width: 70%;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+.personal-section > h1 {
+	color: #fff;
+	font-weight: 400;
+	font-size: 1.7em;
+}
+.personal-section > hr {
+	height: 1px;
+	background-color: #535353;
+	border: none;
+	margin-top: -10px;
+}
+
+.personal-form {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1em;
+}
+.personal-form > input {
+	padding: 2px;
+}
+.first-name,
+.last-name,
+.email,
+.phone-number {
+	width: 100% !important;
+	height: 40px !important;
+	text-indent: 10px;
 }
