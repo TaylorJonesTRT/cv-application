@@ -34,19 +34,19 @@ header {
 	font-weight: 500;
 }
 
-.personal-section {
+.section {
 	width: 70%;
 	margin: 0 auto;
 	padding-top: 20px;
 }
-.personal-section > h1 {
+.section > h1 {
 	color: #fff;
 	font-weight: 400;
 	font-size: 1.7em;
 }
-.personal-section > hr {
+.section > hr {
 	height: 1px;
-	background-color: #535353;
+	background-color: #8d8d8d;
 	border: none;
 	margin-top: -10px;
 }
@@ -57,9 +57,6 @@ header {
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 1em;
 }
-.personal-form > input {
-	padding: 2px;
-}
 .first-name,
 .last-name,
 .email,
@@ -67,4 +64,24 @@ header {
 	width: 100% !important;
 	height: 40px !important;
 	text-indent: 10px;
+}
+
+.education-form {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 1em;
+}
+
+.degree-input,
+.school-input,
+.school-start-date-input,
+.school-end-date-input {
+	text-indent: 10px;
+	width: 100% !important;
+	height: 40px;
+}
+
+.degree-input {
+	grid-column: 1/3;
 }

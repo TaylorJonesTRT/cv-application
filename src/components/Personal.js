@@ -3,22 +3,15 @@ import React, { Component } from 'react';
 class Personal extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-    }
   }
 
   updateValue = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.props.onValueChange(event.target.name, event.target.value)
   }
 
   render() {
     return (
-      <div className='personal-section'>
+      <div className='section'>
         <h1>Personal Information</h1>
         <hr />
         <form className='personal-form'>
@@ -26,7 +19,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='First Name'
-              value={this.state.firstName}
+              value={this.props.firstName}
               className='first-name'
               name='firstName'
               onChange={this.updateValue} />
@@ -35,7 +28,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='Last Name'
-              value={this.state.lastName}
+              value={this.props.lastName}
               className='last-name'
               name='lastName'
               onChange={this.updateValue} />
@@ -44,7 +37,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='Email'
-              value={this.state.email}
+              value={this.props.email}
               className='email'
               name='email'
               onChange={this.updateValue} />
@@ -53,7 +46,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='Phone Number'
-              value={this.state.phoneNumber}
+              value={this.props.phoneNumber}
               className='phone-number'
               name='phoneNumber'
               onChange={this.updateValue} />
