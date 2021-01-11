@@ -29,6 +29,10 @@ class App extends Component {
     const lastName = this.state.lastName;
     const email = this.state.email;
     const phoneNumber = this.state.phoneNumber;
+    const degree = this.state.degree;
+    const school = this.state.school;
+    const schoolStartDate = this.state.schoolStartDate;
+    const schoolEndDate = this.state.schoolEndDate;
 
     return (
       <div className="App">
@@ -38,8 +42,15 @@ class App extends Component {
           lastName={lastName}
           email={email}
           phoneNumber={phoneNumber}
-          onValueChange={this.updateValue} />
-        <Education />
+          onValueChange={this.updateValue} 
+          />
+        <Education
+          degree={degree}
+          school={school}
+          schoolStartDate={schoolStartDate}
+          schoolEndDate={schoolEndDate}
+          onValueChange={this.updateValue}
+          />
       </div>
     )
   }

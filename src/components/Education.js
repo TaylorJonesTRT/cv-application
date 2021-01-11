@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
+import { Switch } from 'pretty-checkbox-react';
+import '@djthoms/pretty-checkbox';
 
 class Education extends Component {
   constructor(props) {
@@ -16,41 +18,45 @@ class Education extends Component {
         <h1>Education Information</h1>
         <hr />
         <form className='education-form'>
-          <label>
-            <input
-              type='text'
-              placeholder='Type of Degree'
-              value={this.props.degree}
-              className='degree-input'
-              name='degree'
-              onChange={this.updateValue} />
-          </label>
-          <label>
-            <input
-              type='text'
-              placeholder='School'
-              value={this.props.school}
-              className='school-input'
-              name='school'
-              onChange={this.updateValue} />
-          </label>
-          <label>
-            <input
-              type='date'
-              placeholder='From'
-              value={this.props.schoolStartDate}
-              className='school-start-date-input'
-              name='schoolStartDate'
-              onChange={this.updateValue} />
-          </label>
-          <label>
-            <input
-              type='date'
-              placeholder='To'
-              value={this.props.schoolEndDate}
-              className='school-end-date-input'
-              name='schoolEndDate'
-              onChange={this.updateValue} />
+          <input
+            type='text'
+            placeholder='Type of Degree'
+            value={this.props.degree}
+            className='degree-input'
+            name='degree'
+            onChange={this.updateValue} />
+          <input
+            type='text'
+            placeholder='School'
+            value={this.props.school}
+            className='school-input'
+            name='school'
+            onChange={this.updateValue} />
+          <input
+            type='date'
+            placeholder='From'
+            value={this.props.schoolStartDate}
+            className='school-start-date-input'
+            name='schoolStartDate'
+            onChange={this.updateValue} />
+          <input
+            type='date'
+            placeholder='To'
+            value={this.props.schoolEndDate}
+            className='school-end-date-input'
+            name='schoolEndDate'
+            onChange={this.updateValue} />
+          <label htmlFor='test-sweitch'>
+            <Switch
+              shape='fill'
+              className='preset-switch'
+              style={{
+                fontSize: '1.5em',
+                color: 'white',
+                margin: '0 auto',
+                padding: '10px',
+                float: 'right'
+              }}>Present</Switch>
           </label>
         </form>
       </div>
