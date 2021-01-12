@@ -9,59 +9,43 @@ class App extends Component {
     super(props)
 
     this.state = {
-      degree: '',
-      school: '',
-      schoolStartDate: '',
-      schoolEndDate: '',
-      personal: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: ''
-      },
-      education: {
-
-      },
-      practical: {
-
-      }
+      personalFirstName: '',
+      personalLastName: '',
+      personalEmail: '',
+      personalPhoneNumber: '',
+      education: [],
+      practical: []
     }
   }
 
-  updateValue = (name, value) => {
-    this.setState({ [name]: value });
+  updatePersonal = (name, value) => {
+   this.setState({[name]: value})
+  };
+
+  addToEducation = (eduItem) => {
+    let oldStateEdu = this.state.education;
+    oldStateEdu.concat(eduItem);
+    this.setState({ education: oldStateEdu })
+    console.log(this.state.education)
   }
 
   render() {
-    const firstName = this.state.firstName;
-    const lastName = this.state.lastName;
-    const email = this.state.email;
-    const phoneNumber = this.state.phoneNumber;
-    const degree = this.state.degree;
-    const school = this.state.school;
-    const schoolStartDate = this.state.schoolStartDate;
-    const schoolEndDate = this.state.schoolEndDate;
-
-    const state = this.state;
+    const firstName = this.state.personalFirstName;
 
     return (
       <div className="App">
         <Header/>
         <Personal 
           firstName={firstName}
-          lastName={lastName}
-          email={email}
-          phoneNumber={phoneNumber}
-          onValueChange={this.updateValue} 
+          lastName={this.state.personalLastName}
+          email={this.state.personalEmail}
+          phoneNumber={this.state.personalPhoneNumber}
+          onValueChange={this.updatePersonal}
+          onSetState={this.setState}
           />
         <Education
-          degree={degree}
-          school={school}
-          schoolStartDate={schoolStartDate}
-          schoolEndDate={schoolEndDate}
           onValueChange={this.updateValue}
         />
-        <p>{state.firstName}</p>
       </div>
     )
   }

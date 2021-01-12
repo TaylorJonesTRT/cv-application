@@ -21,7 +21,7 @@ class Personal extends Component {
               placeholder='First Name'
               value={this.props.firstName}
               className='first-name'
-              name='firstName'
+              name='personalFirstName'
               onChange={this.updateValue} />
           </label>
           <label>
@@ -30,7 +30,7 @@ class Personal extends Component {
               placeholder='Last Name'
               value={this.props.lastName}
               className='last-name'
-              name='lastName'
+              name='personalLastName'
               onChange={this.updateValue} />
           </label>
           <label>
@@ -39,7 +39,7 @@ class Personal extends Component {
               placeholder='Email'
               value={this.props.email}
               className='email'
-              name='email'
+              name='personalEmail'
               onChange={this.updateValue} />
           </label>
           <label>
@@ -48,7 +48,7 @@ class Personal extends Component {
               placeholder='Phone Number'
               value={this.props.phoneNumber}
               className='phone-number'
-              name='phoneNumber'
+              name='personalPhoneNumber'
               onChange={this.updateValue} />
           </label>
         </form>

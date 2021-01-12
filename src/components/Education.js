@@ -7,10 +7,21 @@ import uniqid from "uniqid";
 class Education extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      schoolName: '',
+      degree: '',
+      startDate: '',
+      endDate: ''
+    }
   }
 
   updateValue = (event) => {
     this.props.onValueChange(event.target.name, event.target.value)
+  }
+
+  createNewEducation = () => {
+    
   }
 
   render() {

@@ -6,6 +6,10 @@ body {
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
+h1 {
+	color: white;
+}
+
 :root {
 	/* Need to add any reused colors here */
 }
