@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import { Switch } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
+import uniqid from "uniqid";
 
 class Education extends Component {
   constructor(props) {

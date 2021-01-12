@@ -9,14 +9,22 @@ class App extends Component {
     super(props)
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
       degree: '',
       school: '',
       schoolStartDate: '',
       schoolEndDate: '',
+      personal: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: ''
+      },
+      education: {
+
+      },
+      practical: {
+
+      }
     }
   }
 
@@ -34,6 +42,8 @@ class App extends Component {
     const schoolStartDate = this.state.schoolStartDate;
     const schoolEndDate = this.state.schoolEndDate;
 
+    const state = this.state;
+
     return (
       <div className="App">
         <Header/>
@@ -50,7 +60,8 @@ class App extends Component {
           schoolStartDate={schoolStartDate}
           schoolEndDate={schoolEndDate}
           onValueChange={this.updateValue}
-          />
+        />
+        <p>{state.firstName}</p>
       </div>
     )
   }
