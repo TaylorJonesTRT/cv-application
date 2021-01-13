@@ -38,9 +38,12 @@ header {
 	font-weight: 500;
 }
 
-.section {
+.wrapper {
 	width: 70%;
 	margin: 0 auto;
+}
+
+.section {
 	padding-top: 20px;
 }
 .section > h1 {
@@ -53,6 +56,15 @@ header {
 	background-color: #8d8d8d;
 	border: none;
 	margin-top: -10px;
+}
+
+.add-btn {
+	margin-top: 15px;
+}
+
+.preview-btn {
+	float: right;
+	margin-top: 50px;
 }
 
 .personal-form {

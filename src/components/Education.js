@@ -9,8 +9,8 @@ class Education extends Component {
     super(props);
 
     this.state = {
-      schoolName: '',
       degree: '',
+      schoolName: '',
       startDate: '',
       endDate: ''
     }
@@ -20,8 +20,18 @@ class Education extends Component {
     this.props.onValueChange(event.target.name, event.target.value)
   }
 
-  createNewEducation = () => {
-    
+  submitEdu = (event) => {
+    event.preventDefault();
+    let eduItem = {
+      id: uniqid(),
+      degree: this.state.degree,
+      school: this.state.schoolName,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate
+    }
+    this.props.onSubmit(eduItem);
+    console.log(eduItem);
+    alert('Submitted');
   }
 
   render() {
@@ -33,30 +43,30 @@ class Education extends Component {
           <input
             type='text'
             placeholder='Type of Degree'
-            value={this.props.degree}
+            value={this.state.degree}
             className='degree-input'
             name='degree'
             onChange={this.updateValue} />
           <input
             type='text'
             placeholder='School'
-            value={this.props.school}
+            value={this.state.schoolName}
             className='school-input'
-            name='school'
+            name='schoolName'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='From'
-            value={this.props.schoolStartDate}
+            value={this.state.startDate}
             className='school-start-date-input'
-            name='schoolStartDate'
+            name='startDate'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='To'
-            value={this.props.schoolEndDate}
+            value={this.state.endDate}
             className='school-end-date-input'
-            name='schoolEndDate'
+            name='endDate'
             onChange={this.updateValue} />
           <label htmlFor='test-sweitch'>
             <Switch

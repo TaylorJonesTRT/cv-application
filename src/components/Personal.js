@@ -19,7 +19,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='First Name'
-              value={this.props.firstName}
+              value={this.props.personalFirstName}
               className='first-name'
               name='personalFirstName'
               onChange={this.updateValue} />

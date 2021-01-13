@@ -13,39 +13,39 @@ class App extends Component {
       personalLastName: '',
       personalEmail: '',
       personalPhoneNumber: '',
-      education: [],
-      practical: []
+      degree: '',
+      school: '',
+      schoolStartDate: '',
+      schoolEndDate: '',
+      companyName: '',
+      jobTitle: '',
+      jobStartDate: '',
+      jobEndDate: '',
+      jobDesc: ''
     }
   }
 
-  updatePersonal = (name, value) => {
+  updateValue = (name, value) => {
    this.setState({[name]: value})
   };
 
-  addToEducation = (eduItem) => {
-    let oldStateEdu = this.state.education;
-    oldStateEdu.concat(eduItem);
-    this.setState({ education: oldStateEdu })
-    console.log(this.state.education)
-  }
-
   render() {
-    const firstName = this.state.personalFirstName;
-
+    const state = this.state;
     return (
       <div className="App">
-        <Header/>
-        <Personal 
-          firstName={firstName}
-          lastName={this.state.personalLastName}
-          email={this.state.personalEmail}
-          phoneNumber={this.state.personalPhoneNumber}
-          onValueChange={this.updatePersonal}
-          onSetState={this.setState}
+        <Header />
+        <div className='wrapper'>
+          <Personal
+            state={state}  
+            onValueChange={this.updateValue}
           />
-        <Education
-          onValueChange={this.updateValue}
-        />
+          <Education
+            state={state}
+            onValueChange={this.updateValue}
+          />
+          <br />
+          <button className='preview-btn'>Preview</button>
+        </div>
       </div>
     )
   }
