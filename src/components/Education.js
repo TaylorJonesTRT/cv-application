@@ -2,36 +2,11 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import { Switch } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
-import uniqid from "uniqid";
 
 class Education extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      degree: '',
-      schoolName: '',
-      startDate: '',
-      endDate: ''
-    }
-  }
 
   updateValue = (event) => {
     this.props.onValueChange(event.target.name, event.target.value)
-  }
-
-  submitEdu = (event) => {
-    event.preventDefault();
-    let eduItem = {
-      id: uniqid(),
-      degree: this.state.degree,
-      school: this.state.schoolName,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate
-    }
-    this.props.onSubmit(eduItem);
-    console.log(eduItem);
-    alert('Submitted');
   }
 
   render() {
@@ -43,30 +18,30 @@ class Education extends Component {
           <input
             type='text'
             placeholder='Type of Degree'
-            value={this.state.degree}
+            value={this.props.degree}
             className='degree-input'
             name='degree'
             onChange={this.updateValue} />
           <input
             type='text'
             placeholder='School'
-            value={this.state.schoolName}
+            value={this.props.schoolName}
             className='school-input'
             name='schoolName'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='From'
-            value={this.state.startDate}
+            value={this.props.schoolStartDate}
             className='school-start-date-input'
-            name='startDate'
+            name='schoolSartDate'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='To'
-            value={this.state.endDate}
+            value={this.props.schoolEndDate}
             className='school-end-date-input'
-            name='endDate'
+            name='schoolEndDate'
             onChange={this.updateValue} />
           <label htmlFor='test-sweitch'>
             <Switch

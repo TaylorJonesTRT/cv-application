@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class Personal extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   updateValue = (event) => {
     this.props.onValueChange(event.target.name, event.target.value)

@@ -3,6 +3,7 @@ import './styles/App.css';
 import Header from './components/Header';
 import Personal from './components/Personal';
 import Education from './components/Education';
+import Practical from './components/Practical';
 
 class App extends Component {
   constructor(props) {
@@ -30,17 +31,17 @@ class App extends Component {
   };
 
   render() {
-    const state = this.state;
     return (
       <div className="App">
         <Header />
         <div className='wrapper'>
           <Personal
-            state={state}  
             onValueChange={this.updateValue}
           />
           <Education
-            state={state}
+            onValueChange={this.updateValue}
+          />
+          <Practical
             onValueChange={this.updateValue}
           />
           <br />
