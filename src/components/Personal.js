@@ -19,7 +19,8 @@ class Personal extends Component {
               value={this.props.personalFirstName}
               className='first-name'
               name='personalFirstName'
-              onChange={this.updateValue} />
+              onChange={this.updateValue}
+              required />
           </label>
           <label>
             <input
@@ -28,7 +29,8 @@ class Personal extends Component {
               value={this.props.lastName}
               className='last-name'
               name='personalLastName'
-              onChange={this.updateValue} />
+              onChange={this.updateValue} 
+              required />
           </label>
           <label>
             <input
@@ -37,7 +39,8 @@ class Personal extends Component {
               value={this.props.email}
               className='email'
               name='personalEmail'
-              onChange={this.updateValue} />
+              onChange={this.updateValue}
+              required />
           </label>
           <label>
             <input
@@ -46,7 +49,8 @@ class Personal extends Component {
               value={this.props.phoneNumber}
               className='phone-number'
               name='personalPhoneNumber'
-              onChange={this.updateValue} />
+              onChange={this.updateValue}
+              required />
           </label>
         </form>
       </div>
