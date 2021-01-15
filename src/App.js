@@ -64,44 +64,44 @@ class App extends Component {
     let jobEndError = '';
 
     if (!this.state.personalFirstName) {
-      firstNameError = 'Field cannot be blank';
+      firstNameError = 'First Name: Field cannot be blank';
       errorMessages.push({'First Name': firstNameError});
     }
     if (!this.state.personalLastName) {
-      lastNameError = 'Field cannot be blank';
+      lastNameError = 'Last Name: Field cannot be blank';
     }
     if (!this.state.personalEmail.includes('@')) {
-      emailError = 'Please enter a valid email';
+      emailError = 'Email: Please enter a valid email';
     }
     if (!this.state.personalPhoneNumber) {
-      phoneError = 'Field cannot be blank';
+      phoneError = 'Phone Number: Field cannot be blank';
     }
     if (!this.state.degree) { 
-      degreeError = 'Field cannot be blank';
+      degreeError = 'Type of Degree: Field cannot be blank';
     }
     if (!this.state.school) { 
-      schoolError = 'Field cannot be blank';
+      schoolError = 'School: Field cannot be blank';
     }
     if (!this.state.schoolStartDate) { 
-      schoolStartError = 'Please choose a date';
+      schoolStartError = 'School Start Date: Please choose a date';
     }
     if (!this.state.schoolEndDate) { 
-      schoolEndError = 'Please choose a date';
+      schoolEndError = 'School End Date: Please choose a date';
     }
     if (!this.state.companyName) { 
-      companyError = 'Field cannot be blank';
+      companyError = 'Company: Field cannot be blank';
     }
     if (!this.state.jobTitle) { 
-      jobTitleError = 'Field cannot be blank';
+      jobTitleError = 'Job Title: Field cannot be blank';
     }
     if (!this.state.jobDesc) { 
-      jobDescError = 'Field cannot be blank';
+      jobDescError = 'Job Description: Field cannot be blank';
     }
     if (!this.state.jobStart) { 
-      jobStartError = 'Please pick a date';
+      jobStartError = 'Job Start Date: Please pick a date';
     }
     if (!this.state.jobEnd) { 
-      jobEndError = 'Please pick a date';
+      jobEndError = 'Job End Date: Please pick a date';
     }
     
 
@@ -125,15 +125,14 @@ class App extends Component {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      console.log(this.state);
+      console.log('hi');
     }
     this.renderErrors();
   }
 
   renderErrors = () => {
-    const errors = JSON.stringify(errorMessages);
+    // const errors = JSON.stringify(errorMessages);
     // return Object.keys(errors);
-    console.log(Object.keys(errors));
   }
 
   render() {
@@ -142,6 +141,19 @@ class App extends Component {
         <Header />
         <div className='wrapper'>
           <div className='error-box'>
+            <p>{this.state.firstNameError}</p>
+            <p>{this.state.lastNameError}</p>
+            <p>{this.state.emailError}</p>
+            <p>{this.state.phoneError}</p>
+            <p>{this.state.degreeError}</p>
+            <p>{this.state.schoolError}</p>
+            <p>{this.state.schoolStartError}</p>
+            <p>{this.state.schoolEndError}</p>
+            <p>{this.state.companyError}</p>
+            <p>{this.state.jobTitleError}</p>
+            <p>{this.state.jobDescError}</p>
+            <p>{this.state.jobStartError}</p>
+            <p>{this.state.jobEndError}</p>
           </div>
           <Personal
             firstNameError={this.state.firstNameError}

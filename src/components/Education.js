@@ -31,8 +31,7 @@ class Education extends Component {
             onChange={this.updateValue} />
           <input
             type='date'
-            placeholder='From'
-            value={this.props.schoolStartDate}
+            value='{this.props.schoolStartDate}'
             className='school-start-date-input'
             name='schoolSartDate'
             onChange={this.updateValue} />
