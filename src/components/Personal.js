@@ -7,7 +7,9 @@ class Personal extends Component {
   }
 
   render() {
-    return (
+    return !this.props.editView ? (
+      null
+    ) : (
       <div className='section'>
         <h1>Personal Information</h1>
         <hr />
@@ -16,7 +18,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='First Name'
-              value={this.props.personalFirstName}
+              value={this.props.state.personalFirstName}
               className='first-name'
               name='personalFirstName'
               onChange={this.updateValue}
@@ -26,7 +28,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='Last Name'
-              value={this.props.lastName}
+              value={this.props.state.personalLastName}
               className='last-name'
               name='personalLastName'
               onChange={this.updateValue} 
@@ -36,7 +38,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='Email'
-              value={this.props.email}
+              value={this.props.state.personalEmail}
               className='email'
               name='personalEmail'
               onChange={this.updateValue}
@@ -46,7 +48,7 @@ class Personal extends Component {
             <input
               type='text'
               placeholder='Phone Number'
-              value={this.props.phoneNumber}
+              value={this.props.state.personalPhoneNumber}
               className='phone-number'
               name='personalPhoneNumber'
               onChange={this.updateValue}

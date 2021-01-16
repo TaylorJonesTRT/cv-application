@@ -10,7 +10,9 @@ class Education extends Component {
   }
 
   render() {
-    return (
+    return !this.props.editView ? (
+      null
+    ) : (
       <div className='section'>
         <h1>Education Information</h1>
         <hr />
@@ -18,27 +20,27 @@ class Education extends Component {
           <input
             type='text'
             placeholder='Type of Degree'
-            value={this.props.degree}
+            value={this.props.state.degree}
             className='degree-input'
             name='degree'
             onChange={this.updateValue} />
           <input
             type='text'
             placeholder='School'
-            value={this.props.schoolName}
+            value={this.props.state.school}
             className='school-input'
-            name='schoolName'
+            name='school'
             onChange={this.updateValue} />
           <input
             type='date'
-            value='{this.props.schoolStartDate}'
+            value={this.props.state.schoolStartDate}
             className='school-start-date-input'
-            name='schoolSartDate'
+            name='schoolStartDate'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='To'
-            value={this.props.schoolEndDate}
+            value={this.props.state.schoolEndDate}
             className='school-end-date-input'
             name='schoolEndDate'
             onChange={this.updateValue} />

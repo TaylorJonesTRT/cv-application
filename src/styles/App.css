@@ -155,8 +155,6 @@ header {
 	background: #ef9a9a;
 	border-radius: 3px;
 	margin-top: 20px;
-}
-.error-box > p {
-	padding: 5px 5px 5px 5px;
-	margin: 5px 0 5px 10px;
+	height: auto;
+	padding: 5px;
 }

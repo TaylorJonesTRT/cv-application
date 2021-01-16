@@ -6,10 +6,13 @@ class HTMLView extends Component {
   }
 
   render() {
-    return (
-      <div>Hello</div>
+    return this.props.editView ? (
+      null
+    ) : (
+        <div>hi</div>
     )
   }
+
 }
 
 export default HTMLView;

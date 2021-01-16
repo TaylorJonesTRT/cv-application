@@ -3,13 +3,15 @@ import { Switch } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 
 class Practical extends Component {
-  
+
   updateValue = (event) => {
     this.props.onValueChange(event.target.name, event.target.value)
   }
 
   render() {
-    return (
+    return !this.props.editView ? (
+      null
+    ) : (
       <div className='section'>
         <h1>Work Experience</h1>
         <hr />
@@ -17,36 +19,36 @@ class Practical extends Component {
           <input
             type='text'
             placeholder='Company'
-            value={this.props.companyName}
+            value={this.props.state.companyName}
             className='company-input'
-            name='company'
+            name='companyName'
             onChange={this.updateValue} />
           <input
             type='text'
             placeholder='Job Title'
-            value={this.props.jobTitle}
+            value={this.props.state.jobTitle}
             className='job-title-input'
             name='jobTitle'
             onChange={this.updateValue} />
           <textarea
             placeholder='Job Description'
-            value={this.props.jobDesc}
+            value={this.props.state.jobDesc}
             className='job-desc-input'
             name='jobDesc'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='From'
-            value={this.props.schoolStartDate}
+            value={this.props.state.schoolStartDate}
             className='job-start-date-input'
-            name='jobStartDate'
+            name='jobStart'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='To'
-            value={this.props.schoolEndDate}
+            value={this.props.state.schoolEndDate}
             className='job-end-date-input'
-            name='jobEndDate'
+            name='jobEnd'
             onChange={this.updateValue} />
           <label htmlFor='test-sweitch'>
             <Switch

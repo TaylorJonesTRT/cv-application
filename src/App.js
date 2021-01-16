@@ -4,8 +4,8 @@ import Header from './components/Header';
 import Personal from './components/Personal';
 import Education from './components/Education';
 import Practical from './components/Practical';
-
-const errorMessages = [];
+import HTMLView from './components/HTMLView';
+import ErrorBox from './components/ErrorBox';
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +40,8 @@ class App extends Component {
       jobDescError: '',
       jobStartError: '',
       jobEndError: '',
-      errorMessages: []
+      editView: true,
+      showErrorBox: false
     }
   }
 
@@ -63,44 +64,43 @@ class App extends Component {
     let jobStartError = '';
     let jobEndError = '';
 
-    if (!this.state.personalFirstName) {
+    if (this.state.personalFirstName === '') {
       firstNameError = 'First Name: Field cannot be blank';
-      errorMessages.push({'First Name': firstNameError});
     }
-    if (!this.state.personalLastName) {
+    if (this.state.personalLastName === '') {
       lastNameError = 'Last Name: Field cannot be blank';
     }
     if (!this.state.personalEmail.includes('@')) {
       emailError = 'Email: Please enter a valid email';
     }
-    if (!this.state.personalPhoneNumber) {
+    if (this.state.personalPhoneNumber === '') {
       phoneError = 'Phone Number: Field cannot be blank';
     }
-    if (!this.state.degree) { 
+    if (this.state.degree === '') { 
       degreeError = 'Type of Degree: Field cannot be blank';
     }
-    if (!this.state.school) { 
+    if (this.state.school === '') { 
       schoolError = 'School: Field cannot be blank';
     }
-    if (!this.state.schoolStartDate) { 
+    if (this.state.schoolStartDate === '') { 
       schoolStartError = 'School Start Date: Please choose a date';
     }
-    if (!this.state.schoolEndDate) { 
+    if (this.state.schoolEndDate === '') { 
       schoolEndError = 'School End Date: Please choose a date';
     }
-    if (!this.state.companyName) { 
+    if (this.state.companyName === '') { 
       companyError = 'Company: Field cannot be blank';
     }
-    if (!this.state.jobTitle) { 
+    if (this.state.jobTitle === '') { 
       jobTitleError = 'Job Title: Field cannot be blank';
     }
-    if (!this.state.jobDesc) { 
+    if (this.state.jobDesc === '') { 
       jobDescError = 'Job Description: Field cannot be blank';
     }
-    if (!this.state.jobStart) { 
+    if (this.state.jobStart === '') { 
       jobStartError = 'Job Start Date: Please pick a date';
     }
-    if (!this.state.jobEnd) { 
+    if (this.state.jobEnd === '') { 
       jobEndError = 'Job End Date: Please pick a date';
     }
     
@@ -113,63 +113,61 @@ class App extends Component {
         degreeError, schoolError, schoolStartError, schoolEndError, companyError,
         jobTitleError, jobDescError, jobStartError, jobEndError
       });
-      let newErrorMessages = [...this.state.errorMessages];
-      this.setState({ errorMessages: newErrorMessages });
       return false;
+    } else {
+      return true;
     }
-    
-    return true;
-  }
-
-  handlePreview = (event) => {
-    event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log('hi');
-    }
-    this.renderErrors();
   }
 
   renderErrors = () => {
-    // const errors = JSON.stringify(errorMessages);
-    // return Object.keys(errors);
+    this.setState(prevState => ({
+      showErrorBox: !prevState.showErrorBox
+    }));
+    console.log('hi')
+  }
+
+  handleToggleClick = (event) => {
+    event.preventDefault();
+    const isValid = this.validate();
+    if (isValid) {
+      this.setState(prevState => ({
+        editView: !prevState.editView
+      }));
+    } else {
+      this.renderErrors();
+    }
   }
 
   render() {
+    const showErrors = this.state.showErrorBox;
+    const editView = this.state.editView;
+    const state = this.state;
     return (
       <div className="App">
         <Header />
         <div className='wrapper'>
-          <div className='error-box'>
-            <p>{this.state.firstNameError}</p>
-            <p>{this.state.lastNameError}</p>
-            <p>{this.state.emailError}</p>
-            <p>{this.state.phoneError}</p>
-            <p>{this.state.degreeError}</p>
-            <p>{this.state.schoolError}</p>
-            <p>{this.state.schoolStartError}</p>
-            <p>{this.state.schoolEndError}</p>
-            <p>{this.state.companyError}</p>
-            <p>{this.state.jobTitleError}</p>
-            <p>{this.state.jobDescError}</p>
-            <p>{this.state.jobStartError}</p>
-            <p>{this.state.jobEndError}</p>
-          </div>
+          <ErrorBox error={showErrors} state={state}/>
           <Personal
-            firstNameError={this.state.firstNameError}
-            lastNameError={this.state.lastNameError}
-            emailError={this.state.emailError}
-            phoneError={this.state.phoneError}
             onValueChange={this.updateValue}
+            editView={editView}
+            state={state}
           />
           <Education
             onValueChange={this.updateValue}
+            editView={editView}
+            state={state}
           />
           <Practical
             onValueChange={this.updateValue}
+            editView={editView}
+            state={state}
+          />
+          <HTMLView
+            editView={editView}
+            state={state}
           />
           <br />
-          <button className='preview-btn' onClick={this.handlePreview}>Preview</button>
+          <button className='preview-btn' onClick={this.handleToggleClick}>{this.state.editView ? 'Preview' : 'Edit'}</button>
         </div>
       </div>
     )
