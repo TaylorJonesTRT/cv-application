@@ -158,3 +158,9 @@ header {
 	height: auto;
 	padding: 5px;
 }
+
+.preview {
+}
+.preview > P {
+	color: #fff;
+}
