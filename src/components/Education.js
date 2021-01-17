@@ -9,6 +9,10 @@ class Education extends Component {
     this.props.onValueChange(event.target.name, event.target.value)
   }
 
+  handleSwitch = (event) => {
+    this.props.switchToggle(event.target.name);
+  }
+
   render() {
     return !this.props.editView ? (
       null
@@ -46,8 +50,11 @@ class Education extends Component {
             onChange={this.updateValue} />
           <label htmlFor='test-sweitch'>
             <Switch
+              checked={this.props.switchStatus}
+              onChange={this.handleSwitch}
               shape='fill'
               className='preset-switch'
+              name='schoolSwitch'
               style={{
                 fontSize: '1.5em',
                 color: 'white',

@@ -5,7 +5,11 @@ import '@djthoms/pretty-checkbox';
 class Practical extends Component {
 
   updateValue = (event) => {
-    this.props.onValueChange(event.target.name, event.target.value)
+    this.props.onValueChange(event.target.name, event.target.value);
+  }
+
+  handleSwitch = (event) => {
+    this.props.switchToggle(event.target.name);
   }
 
   render() {
@@ -39,21 +43,24 @@ class Practical extends Component {
           <input
             type='date'
             placeholder='From'
-            value={this.props.state.schoolStartDate}
+            value={this.props.state.jobStartDate}
             className='job-start-date-input'
-            name='jobStart'
+            name='jobStartDate'
             onChange={this.updateValue} />
           <input
             type='date'
             placeholder='To'
-            value={this.props.state.schoolEndDate}
+            value={this.props.state.jobEndDate}
             className='job-end-date-input'
-            name='jobEnd'
+            name='jobEndDate'
             onChange={this.updateValue} />
           <label htmlFor='test-sweitch'>
             <Switch
+              checked={this.props.switchStatus}
+              onChange={this.handleSwitch}
               shape='fill'
               className='preset-switch'
+              name='jobSwitch'
               style={{
                 fontSize: '1.5em',
                 color: 'white',

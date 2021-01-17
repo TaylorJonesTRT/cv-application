@@ -30,7 +30,7 @@ class HTMLView extends Component {
             <p>{this.props.state.companyName}</p>
             <p>{this.props.state.jobTitle}</p>
             <p>{this.props.state.jobDesc}</p>
-            <p>Started: {this.props.state.jobStart} | Left: {this.props.state.jobEnd}</p>
+            <p>Started: {this.props.state.jobStartDate} | Left: {this.props.state.jobEndDate}</p>
           </div>
         </div>
     )

@@ -20,13 +20,13 @@ class App extends Component {
       school: '',
       schoolStartDate: '',
       schoolEndDate: '',
+      schoolSwitch: false,
       companyName: '',
       jobTitle: '',
       jobStartDate: '',
       jobEndDate: '',
       jobDesc: '',
-      jobStart: '',
-      jobEnd: '',
+      jobSwitch: false,
       firstNameError: '',
       lastNameError: '',
       emailError: '',
@@ -97,10 +97,10 @@ class App extends Component {
     if (this.state.jobDesc === '') { 
       jobDescError = 'Job Description: Field cannot be blank';
     }
-    if (this.state.jobStart === '') { 
+    if (this.state.jobStartDate === '') { 
       jobStartError = 'Job Start Date: Please pick a date';
     }
-    if (this.state.jobEnd === '') { 
+    if (this.state.jobEndDate === '') { 
       jobEndError = 'Job End Date: Please pick a date';
     }
     
@@ -123,7 +123,6 @@ class App extends Component {
     this.setState(prevState => ({
       showErrorBox: !prevState.showErrorBox
     }));
-    console.log('hi')
   }
 
   handleToggleClick = (event) => {
@@ -138,9 +137,49 @@ class App extends Component {
     }
   }
 
+  updateDateValues = (edu, job) => {
+    if (edu === false) {
+      this.setState(prevState => ({
+        schoolEndDate: 'Present'
+      }));
+    } else if (edu === true) {
+      this.setState(prevState => ({
+        schoolEndDate: ''
+      }));
+    }
+    
+    if (job === false) {
+      this.setState(prevState => ({
+        jobEndDate: 'Present'
+      }));
+    } else if (job === true){
+      this.setState(prevState => ({
+        jobEndDate: ''
+      }));
+    }
+    console.log(this.state.jobEndDate)
+  }
+
+  handleSwitchToggle = (area) => {
+    if (area === 'eduSwitch') {
+      this.setState(prevState => ({
+        schoolSwitch: !prevState.schoolSwitch
+      }));
+    } else if (area === 'jobSwitch') {
+      this.setState(prevState => ({
+        jobSwitch: !prevState.jobSwitch
+      }));
+    }
+    
+    this.updateDateValues(this.state.schoolSwitch, this.state.jobSwitch);
+  }
+
   render() {
     const showErrors = this.state.showErrorBox;
     const editView = this.state.editView;
+    const switchToggle = this.handleSwitchToggle;
+    const eduSwitchStatus = this.state.schoolSwitch;
+    const jobSwitchStatus = this.state.jobSwitch;
     const state = this.state;
     return (
       <div className="App">
@@ -156,11 +195,15 @@ class App extends Component {
             onValueChange={this.updateValue}
             editView={editView}
             state={state}
+            switchStatus={eduSwitchStatus}
+            switchToggle={switchToggle}
           />
           <Practical
             onValueChange={this.updateValue}
             editView={editView}
             state={state}
+            switchStatus={jobSwitchStatus}
+            switchToggle={switchToggle}
           />
           <HTMLView
             editView={editView}
