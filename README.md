@@ -8,3 +8,22 @@ I broke down the main items of the application into components (Header, Personal
 
 [Live Demo](https://taylorjonestrt.github.io/cv-application-react/)
 
+
+
+## Run Locally
+
+```
+git clone https://github.com/TaylorJonesTRT/cv-application-react.git
+cd react-cv-application
+npm install
+npm run start
+```
+
+
+
+## Built With
+
+[ReactJS](https://reactjs.org/)
+
+[Pretty Checkbox React](https://pretty-checkbox-react.netlify.app/)
+
