@@ -103,7 +103,6 @@ class App extends Component {
     if (this.state.jobEndDate === '') { 
       jobEndError = 'Job End Date: Please pick a date';
     }
-    
 
     if (firstNameError || lastNameError || emailError || phoneError ||
       degreeError || schoolError || schoolStartError || schoolEndError ||
@@ -114,9 +113,8 @@ class App extends Component {
         jobTitleError, jobDescError, jobStartError, jobEndError
       });
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   renderErrors = () => {
