@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+
+//Starting on rewrite of class components into functions with hooks
 
 class Personal extends Component {
 
