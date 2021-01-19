@@ -6,7 +6,9 @@ const Personal = (props) => {
     props.handleChange(e.target.name, e.target.value);
   }
 
-  return (
+  return !props.editView ? (
+    null
+  ) : (
     <div className="section">
       <h1>Personal Information</h1>
       <hr />
@@ -29,6 +31,7 @@ const Personal = (props) => {
             value={props.lastName}
             className="last-name"
             name="lastName"
+            onChange={onChange}
             required
           />
         </label>
@@ -39,6 +42,7 @@ const Personal = (props) => {
             value={props.email}
             className="email"
             name="email"
+            onChange={onChange}
             required
           />
         </label>
@@ -49,6 +53,7 @@ const Personal = (props) => {
             value={props.phoneNumber}
             className="phone-number"
             name="phoneNumber"
+            onChange={onChange}
             required
           />
         </label>
