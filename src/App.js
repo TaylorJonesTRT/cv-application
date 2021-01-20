@@ -42,13 +42,6 @@ const App = () => {
     showErrorBox: false,
   });
 
-  useEffect(() => {
-    let prevState = state;
-    if (prevState !== state) {
-      setState(state);
-    }
-  });
-
   function validate() {
     let firstNameError = '';
     let lastNameError = '';
@@ -104,16 +97,33 @@ const App = () => {
       jobEndError = 'Job End Date: Please pick a date';
     }
 
-    if (firstNameError) {
+    if (firstNameError || lastNameError || emailError || phoneError || degreeError || schoolError ||
+      schoolStartError || schoolEndError || companyError || jobTitleError || jobDescError ||
+      jobStartError || jobEndError) {
       setState({
-        firstName: 'hi',
+        ...state,
+        firstNameError,
+        lastNameError,
+        emailError,
+        phoneError,
+        degreeError,
+        schoolError,
+        schoolStartError,
+        schoolEndError,
+        companyError,
+        jobTitleError,
+        jobDescError,
+        jobStartError,
+        jobEndError,
+        showErrorBox: true,
       });
-      // TODO: NEED TO FIGURE OUT WHY THE STATE IS NOT BEING SET HERE
-      console.log(state);
-      let oldState = state;
-      console.log(oldState);
+
       return false;
     }
+    setState({
+      ...state,
+      showErrorBox: false,
+    });
     return true;
   }
 
@@ -131,23 +141,62 @@ const App = () => {
     });
   }
 
-  function handleSwitch(name) {
-    setState({
-      ...state,
-      [name]: !state.[name],
-    });
+  function updateDateValues(edu, job) {
+    if (edu === false) {
+      setState({
+        ...state,
+        schoolEndDate: 'Present',
+      });
+    } else if (edu === true) {
+      setState({
+        ...state,
+        schoolEndDate: '',
+      });
+    }
+
+    if (job === false) {
+      setState({
+        ...state,
+        jobEndDate: 'Present',
+      });
+    } else if (job === true) {
+      setState({
+        ...state,
+        jobEndDate: '',
+      });
+    }
+  }
+
+  function handleSwitchToggle(area) {
+    if (area === 'eduSwitch') {
+      setState({
+        ...state,
+        schoolSwitch: !state.schoolSwitch,
+      });
+    } else if (area === 'jobSwitch') {
+      setState({
+        ...state,
+        jobSwitch: !state.jobSwitch,
+      });
+    }
+    updateDateValues(state.schoolSwitch, state.jobSwitch);
   }
 
   function handleButton(e) {
+    e.preventDefault();
+    // TODO: Add a if statement so that the button press on the preview screen will works
+    // TODO: Also fix the need of isValid here and clean up the code block.
     const isValid = validate();
-    if (!isValid) {
-      renderErrors();
-      console.log(state.firstNameError);
-    } else {
-      setState({
-        ...state,
-        editView: false,
-      });
+    if (state.editView) {
+      if (!isValid) {
+        console.log('handleButton');
+        console.log(state);
+      } else {
+        setState({
+          ...state,
+          editView: false,
+        });
+      }
     }
   }
 
@@ -175,7 +224,7 @@ const App = () => {
           startDate={state.schoolStartDate}
           endDate={state.schoolEndDate}
           switchStatus={state.schoolSwitch}
-          switchToggle={handleSwitch}
+          switchToggle={handleSwitchToggle}
           handleChange={handleChange}
         />
         <Practical
@@ -186,7 +235,7 @@ const App = () => {
           startDate={state.jobStartDate}
           endDate={state.jobEndDate}
           switchStatus={state.jobSwitch}
-          switchToggle={handleSwitch}
+          switchToggle={handleSwitchToggle}
           handleChange={handleChange}
         />
         <HTMLView
@@ -194,7 +243,7 @@ const App = () => {
           state={state}
         />
         <br />
-        <button className="preview-btn" onClick={handleButton}>{state.editView ? 'Preview' : 'Edit'}</button>
+        <button type="submit" className="preview-btn" onClick={handleButton}>{state.editView ? 'Preview' : 'Edit'}</button>
       </div>
     </div>
   );

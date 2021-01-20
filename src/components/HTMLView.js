@@ -10,12 +10,12 @@ function HTMLView(props) {
         <h1>Personal Information</h1>
         <hr />
         <p>
-          {props.state.personalFirstName}
+          {props.state.firstName}
           {' '}
-          {props.state.personalLastName}
+          {props.state.lastName}
         </p>
-        <p>{props.state.personalEmail}</p>
-        <p>{props.state.personalPhoneNumber}</p>
+        <p>{props.state.email}</p>
+        <p>{props.state.phoneNumber}</p>
       </div>
       <div className="preview section">
         <h1>Education Information</h1>
@@ -23,11 +23,8 @@ function HTMLView(props) {
         <p>{props.state.degree}</p>
         <p>{props.state.school}</p>
         <p>
-          Started:
-          {props.state.schoolStartDate}
-          {' '}
-          | Graduated:
-          {props.state.schoolEndDate}
+          From:
+          {props.state.schoolStartDate} | To: {props.state.schoolEndDate}
         </p>
       </div>
       <div className="preview section">
@@ -37,11 +34,7 @@ function HTMLView(props) {
         <p>{props.state.jobTitle}</p>
         <p>{props.state.jobDesc}</p>
         <p>
-          Started:
-          {props.state.jobStartDate}
-          {' '}
-          | Left:
-          {props.state.jobEndDate}
+          From: {props.state.jobStartDate} | To: {props.state.jobEndDate}
         </p>
       </div>
     </div>
