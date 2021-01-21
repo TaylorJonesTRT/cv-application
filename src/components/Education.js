@@ -5,6 +5,7 @@ import '@djthoms/pretty-checkbox';
 
 const Education = (props) => {
   function onChange(e) {
+    e.preventDefault();
     props.handleChange(e.target.name, e.target.value);
   }
 

@@ -127,13 +127,6 @@ const App = () => {
     return true;
   }
 
-  function renderErrors() {
-    setState({
-      ...state,
-      showErrorBox: true,
-    });
-  }
-
   function handleChange(name, value) {
     setState({
       ...state,
@@ -141,45 +134,38 @@ const App = () => {
     });
   }
 
-  function updateDateValues(edu, job) {
-    if (edu === false) {
-      setState({
-        ...state,
-        schoolEndDate: 'Present',
-      });
-    } else if (edu === true) {
+  function updateDateValues() {
+    console.log('updateDateValues');
+    if (state.schoolSwitch) {
+      setTimeout(() => {
+        setState({
+          ...state,
+          schoolEndDate: 'Present',
+        });
+      }, 3000);
+    } else {
       setState({
         ...state,
         schoolEndDate: '',
       });
     }
-
-    if (job === false) {
-      setState({
-        ...state,
-        jobEndDate: 'Present',
-      });
-    } else if (job === true) {
-      setState({
-        ...state,
-        jobEndDate: '',
-      });
-    }
   }
 
   function handleSwitchToggle(area) {
-    if (area === 'eduSwitch') {
+    if (area === 'schoolSwitch') {
       setState({
         ...state,
         schoolSwitch: !state.schoolSwitch,
-      });
+      }, setTimeout(() => console.log(state.schoolSwitch), 5000));
     } else if (area === 'jobSwitch') {
       setState({
         ...state,
         jobSwitch: !state.jobSwitch,
       });
     }
-    updateDateValues(state.schoolSwitch, state.jobSwitch);
+    // TODO: For some reason calling this below function is stopping the state from updating
+    // TODO: could be due to the state being changed asyhnchrously rather than right away
+    // updateDateValues(state.schoolSwitch, state.jobSwitch);
   }
 
   function handleButton(e) {
@@ -199,6 +185,10 @@ const App = () => {
       }
     }
   }
+
+  useEffect(() => {
+
+});
 
   return (
     <div className="App">
