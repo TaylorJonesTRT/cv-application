@@ -1,63 +1,65 @@
-import React, { Component } from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React, { useEffect } from 'react';
 
-class Personal extends Component {
-
-  updateValue = (event) => {
-    this.props.onValueChange(event.target.name, event.target.value)
+const Personal = (props) => {
+  function onChange(e) {
+    props.handleChange(e.target.name, e.target.value);
   }
 
-  render() {
-    return !this.props.editView ? (
-      null
-    ) : (
-      <div className='section'>
-        <h1>Personal Information</h1>
-        <hr />
-        <form className='personal-form'>
-          <label>
-            <input
-              type='text'
-              placeholder='First Name'
-              value={this.props.state.personalFirstName}
-              className='first-name'
-              name='personalFirstName'
-              onChange={this.updateValue}
-              required />
-          </label>
-          <label>
-            <input
-              type='text'
-              placeholder='Last Name'
-              value={this.props.state.personalLastName}
-              className='last-name'
-              name='personalLastName'
-              onChange={this.updateValue} 
-              required />
-          </label>
-          <label>
-            <input
-              type='text'
-              placeholder='Email'
-              value={this.props.state.personalEmail}
-              className='email'
-              name='personalEmail'
-              onChange={this.updateValue}
-              required />
-          </label>
-          <label>
-            <input
-              type='text'
-              placeholder='Phone Number'
-              value={this.props.state.personalPhoneNumber}
-              className='phone-number'
-              name='personalPhoneNumber'
-              onChange={this.updateValue}
-              required />
-          </label>
-        </form>
-      </div>
-    )
-  }
-}
+  return !props.editView ? (
+    null
+  ) : (
+    <div className="section">
+      <h1>Personal Information</h1>
+      <hr />
+      <form className="personal-form">
+        <label>
+          <input
+            type="text"
+            placeholder="First Name"
+            value={props.firstName}
+            className="first-name"
+            name="firstName"
+            onChange={onChange}
+            required
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Last Name"
+            value={props.lastName}
+            className="last-name"
+            name="lastName"
+            onChange={onChange}
+            required
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Email"
+            value={props.email}
+            className="email"
+            name="email"
+            onChange={onChange}
+            required
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Phone Number"
+            value={props.phoneNumber}
+            className="phone-number"
+            name="phoneNumber"
+            onChange={onChange}
+            required
+          />
+        </label>
+      </form>
+    </div>
+  );
+};
 
-export default Personal
+export default Personal;

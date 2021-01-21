@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import Header from './components/Header';
 import Personal from './components/Personal';
@@ -7,49 +8,41 @@ import Practical from './components/Practical';
 import HTMLView from './components/HTMLView';
 import ErrorBox from './components/ErrorBox';
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+const App = () => {
+  const [state, setState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    degree: '',
+    school: '',
+    schoolStartDate: '',
+    schoolEndDate: '',
+    schoolSwitch: false,
+    companyName: '',
+    jobTitle: '',
+    jobStartDate: '',
+    jobEndDate: '',
+    jobDesc: '',
+    jobSwitch: false,
+    editView: true,
+    firstNameError: '',
+    lastNameError: '',
+    emailError: '',
+    phoneError: '',
+    degreeError: '',
+    schoolError: '',
+    schoolStartError: '',
+    schoolEndError: '',
+    companyError: '',
+    jobTitleError: '',
+    jobDescError: '',
+    jobStartError: '',
+    jobEndError: '',
+    showErrorBox: false,
+  });
 
-    this.state = {
-      personalFirstName: '',
-      personalLastName: '',
-      personalEmail: '',
-      personalPhoneNumber: '',
-      degree: '',
-      school: '',
-      schoolStartDate: '',
-      schoolEndDate: '',
-      schoolSwitch: false,
-      companyName: '',
-      jobTitle: '',
-      jobStartDate: '',
-      jobEndDate: '',
-      jobDesc: '',
-      jobSwitch: false,
-      firstNameError: '',
-      lastNameError: '',
-      emailError: '',
-      phoneError: '',
-      degreeError: '',
-      schoolError: '',
-      schoolStartError: '',
-      schoolEndError: '',
-      companyError: '',
-      jobTitleError: '',
-      jobDescError: '',
-      jobStartError: '',
-      jobEndError: '',
-      editView: true,
-      showErrorBox: false
-    }
-  }
-
-  updateValue = (name, value) => {
-   this.setState({[name]: value})
-  };
-
-  validate = () => {
+  function validate() {
     let firstNameError = '';
     let lastNameError = '';
     let emailError = '';
@@ -64,158 +57,198 @@ class App extends Component {
     let jobStartError = '';
     let jobEndError = '';
 
-    if (this.state.personalFirstName === '') {
+    if (state.firstName === '') {
       firstNameError = 'First Name: Field cannot be blank';
     }
-    if (this.state.personalLastName === '') {
+    if (state.lastName === '') {
       lastNameError = 'Last Name: Field cannot be blank';
     }
-    if (!this.state.personalEmail.includes('@')) {
+    if (state.email === '') {
       emailError = 'Email: Please enter a valid email';
     }
-    if (this.state.personalPhoneNumber === '') {
+    if (state.phoneNumber === '') {
       phoneError = 'Phone Number: Field cannot be blank';
     }
-    if (this.state.degree === '') { 
+    if (state.degree === '') {
       degreeError = 'Type of Degree: Field cannot be blank';
     }
-    if (this.state.school === '') { 
+    if (state.school === '') {
       schoolError = 'School: Field cannot be blank';
     }
-    if (this.state.schoolStartDate === '') { 
+    if (state.schoolStartDate === '') {
       schoolStartError = 'School Start Date: Please choose a date';
     }
-    if (this.state.schoolEndDate === '') { 
+    if (state.schoolEndDate === '') {
       schoolEndError = 'School End Date: Please choose a date';
     }
-    if (this.state.companyName === '') { 
+    if (state.companyName === '') {
       companyError = 'Company: Field cannot be blank';
     }
-    if (this.state.jobTitle === '') { 
+    if (state.jobTitle === '') {
       jobTitleError = 'Job Title: Field cannot be blank';
     }
-    if (this.state.jobDesc === '') { 
+    if (state.jobDesc === '') {
       jobDescError = 'Job Description: Field cannot be blank';
     }
-    if (this.state.jobStartDate === '') { 
+    if (state.jobStartDate === '') {
       jobStartError = 'Job Start Date: Please pick a date';
     }
-    if (this.state.jobEndDate === '') { 
+    if (state.jobEndDate === '') {
       jobEndError = 'Job End Date: Please pick a date';
     }
-    
 
-    if (firstNameError || lastNameError || emailError || phoneError ||
-      degreeError || schoolError || schoolStartError || schoolEndError ||
-      companyError || jobTitleError || jobDescError || jobStartError || jobEndError) {
-      this.setState({
-        firstNameError, lastNameError, emailError, phoneError,
-        degreeError, schoolError, schoolStartError, schoolEndError, companyError,
-        jobTitleError, jobDescError, jobStartError, jobEndError
+    if (firstNameError || lastNameError || emailError || phoneError || degreeError || schoolError
+      || schoolStartError || schoolEndError || companyError || jobTitleError || jobDescError
+      || jobStartError || jobEndError) {
+      setState({
+        ...state,
+        firstNameError,
+        lastNameError,
+        emailError,
+        phoneError,
+        degreeError,
+        schoolError,
+        schoolStartError,
+        schoolEndError,
+        companyError,
+        jobTitleError,
+        jobDescError,
+        jobStartError,
+        jobEndError,
+        showErrorBox: true,
       });
+
       return false;
+    }
+    setState({
+      ...state,
+      showErrorBox: false,
+    });
+    return true;
+  }
+
+  function handleChange(name, value) {
+    setState({
+      ...state,
+      [name]: value,
+    });
+  }
+
+  function updateSchoolEnd(edu) {
+    if (edu === true) {
+      setState({
+        ...state,
+        schoolEndDate: 'Present',
+      });
     } else {
-      return true;
+      setState({
+        ...state,
+        schoolEndDate: '',
+      });
     }
   }
 
-  renderErrors = () => {
-    this.setState(prevState => ({
-      showErrorBox: !prevState.showErrorBox
-    }));
-  }
-
-  handleToggleClick = (event) => {
-    event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      this.setState(prevState => ({
-        editView: !prevState.editView
-      }));
+  function updateJobEnd(edu) {
+    if (edu === true) {
+      setState({
+        ...state,
+        jobEndDate: 'Present',
+      });
     } else {
-      this.renderErrors();
+      setState({
+        ...state,
+        jobEndDate: '',
+      });
     }
   }
 
-  updateDateValues = (edu, job) => {
-    if (edu === false) {
-      this.setState(prevState => ({
-        schoolEndDate: 'Present'
-      }));
-    } else if (edu === true) {
-      this.setState(prevState => ({
-        schoolEndDate: ''
-      }));
-    }
-    
-    if (job === false) {
-      this.setState(prevState => ({
-        jobEndDate: 'Present'
-      }));
-    } else if (job === true){
-      this.setState(prevState => ({
-        jobEndDate: ''
-      }));
-    }
-    console.log(this.state.jobEndDate)
-  }
-
-  handleSwitchToggle = (area) => {
-    if (area === 'eduSwitch') {
-      this.setState(prevState => ({
-        schoolSwitch: !prevState.schoolSwitch
-      }));
+  function handleSwitchToggle(area) {
+    if (area === 'schoolSwitch') {
+      setState({
+        ...state,
+        schoolSwitch: !state.schoolSwitch,
+      });
     } else if (area === 'jobSwitch') {
-      this.setState(prevState => ({
-        jobSwitch: !prevState.jobSwitch
-      }));
+      setState({
+        ...state,
+        jobSwitch: !state.jobSwitch,
+      });
     }
-    
-    this.updateDateValues(this.state.schoolSwitch, this.state.jobSwitch);
   }
 
-  render() {
-    const showErrors = this.state.showErrorBox;
-    const editView = this.state.editView;
-    const switchToggle = this.handleSwitchToggle;
-    const eduSwitchStatus = this.state.schoolSwitch;
-    const jobSwitchStatus = this.state.jobSwitch;
-    const state = this.state;
-    return (
-      <div className="App">
-        <Header />
-        <div className='wrapper'>
-          <ErrorBox error={showErrors} state={state}/>
-          <Personal
-            onValueChange={this.updateValue}
-            editView={editView}
-            state={state}
-          />
-          <Education
-            onValueChange={this.updateValue}
-            editView={editView}
-            state={state}
-            switchStatus={eduSwitchStatus}
-            switchToggle={switchToggle}
-          />
-          <Practical
-            onValueChange={this.updateValue}
-            editView={editView}
-            state={state}
-            switchStatus={jobSwitchStatus}
-            switchToggle={switchToggle}
-          />
-          <HTMLView
-            editView={editView}
-            state={state}
-          />
-          <br />
-          <button className='preview-btn' onClick={this.handleToggleClick}>{this.state.editView ? 'Preview' : 'Edit'}</button>
-        </div>
+  function handleButton(e) {
+    e.preventDefault();
+    // TODO: Add a if statement so that the button press on the preview screen will works
+    // TODO: Also fix the need of isValid here and clean up the code block.
+    const isValid = validate();
+    if (state.editView) {
+      if (!isValid) {
+        console.log('handleButton');
+        console.log(state);
+      } else {
+        setState({
+          ...state,
+          editView: false,
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    updateSchoolEnd(state.schoolSwitch);
+  }, [state.schoolSwitch]);
+
+  useEffect(() => {
+    updateJobEnd(state.jobSwitch);
+  }, [state.jobSwitch]);
+
+  return (
+    <div className="App">
+      <Header />
+      <div className="wrapper">
+        <ErrorBox
+          showErrorBox={state.showErrorBox}
+          state={state}
+          firstNameError={state.firstNameError}
+        />
+        <Personal
+          editView={state.editView}
+          firstName={state.firstName}
+          lastName={state.lastName}
+          email={state.email}
+          phoneNumber={state.phoneNumber}
+          handleChange={handleChange}
+        />
+        <Education
+          editView={state.editView}
+          degree={state.degree}
+          school={state.school}
+          startDate={state.schoolStartDate}
+          endDate={state.schoolEndDate}
+          switchStatus={state.schoolSwitch}
+          switchToggle={handleSwitchToggle}
+          handleChange={handleChange}
+        />
+        <Practical
+          editView={state.editView}
+          companyName={state.companyName}
+          jobTitle={state.jobTitle}
+          jobDesc={state.jobDesc}
+          startDate={state.jobStartDate}
+          endDate={state.jobEndDate}
+          switchStatus={state.jobSwitch}
+          switchToggle={handleSwitchToggle}
+          handleChange={handleChange}
+        />
+        <HTMLView
+          editView={state.editView}
+          state={state}
+        />
+        <br />
+        <button type="submit" className="preview-btn" onClick={handleButton}>{state.editView ? 'Preview' : 'Edit'}</button>
       </div>
-    )
-  }
-}
-
+    </div>
+  );
+};
 
 export default App;

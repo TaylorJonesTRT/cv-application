@@ -1,31 +1,26 @@
-import React, { Component } from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React, { useEffect } from 'react';
 
-class ErrorBox extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return !this.props.error ? (
-      null
-    ) : (
-        <div className='error-box'>
-        <p>{this.props.state.firstNameError}</p>
-        <p>{this.props.state.lastNameError}</p>
-        <p>{this.props.state.emailError}</p>
-        <p>{this.props.state.phoneError}</p>
-        <p>{this.props.state.degreeError}</p>
-        <p>{this.props.state.schoolError}</p>
-        <p>{this.props.state.schoolStartError}</p>
-        <p>{this.props.state.schoolEndError}</p>
-        <p>{this.props.state.companyError}</p>
-        <p>{this.props.state.jobTitleError}</p>
-        <p>{this.props.state.jobDescError}</p>
-        <p>{this.props.state.jobStartError}</p>
-        <p>{this.props.state.jobEndError}</p>
-      </div>
-    )
-  }
+function ErrorBox(props) {
+  return !props.showErrorBox ? (
+    null
+  ) : (
+    <div className="error-box">
+      <p>{props.firstNameError}</p>
+      <p>{props.state.lastNameError}</p>
+      <p>{props.state.emailError}</p>
+      <p>{props.state.phoneError}</p>
+      <p>{props.state.degreeError}</p>
+      <p>{props.state.schoolError}</p>
+      <p>{props.state.schoolStartError}</p>
+      <p>{props.state.schoolEndError}</p>
+      <p>{props.state.companyError}</p>
+      <p>{props.state.jobTitleError}</p>
+      <p>{props.state.jobDescError}</p>
+      <p>{props.state.jobStartError}</p>
+      <p>{props.state.jobEndError}</p>
+    </div>
+  );
 }
 
 export default ErrorBox;
