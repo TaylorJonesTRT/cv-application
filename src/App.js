@@ -97,9 +97,9 @@ const App = () => {
       jobEndError = 'Job End Date: Please pick a date';
     }
 
-    if (firstNameError || lastNameError || emailError || phoneError || degreeError || schoolError ||
-      schoolStartError || schoolEndError || companyError || jobTitleError || jobDescError ||
-      jobStartError || jobEndError) {
+    if (firstNameError || lastNameError || emailError || phoneError || degreeError || schoolError
+      || schoolStartError || schoolEndError || companyError || jobTitleError || jobDescError
+      || jobStartError || jobEndError) {
       setState({
         ...state,
         firstNameError,
@@ -134,9 +134,8 @@ const App = () => {
     });
   }
 
-  function updateDateValues() {
-    console.log('updateDateValues');
-    if (state.schoolSwitch) {
+  function updateSchoolEnd(edu) {
+    if (edu === true) {
       setState({
         ...state,
         schoolEndDate: 'Present',
@@ -147,8 +146,10 @@ const App = () => {
         schoolEndDate: '',
       });
     }
+  }
 
-    if (state.jobSwitch) {
+  function updateJobEnd(edu) {
+    if (edu === true) {
       setState({
         ...state,
         jobEndDate: 'Present',
@@ -173,9 +174,6 @@ const App = () => {
         jobSwitch: !state.jobSwitch,
       });
     }
-    // TODO: For some reason calling this below function is stopping the state from updating
-    // TODO: could be due to the state being changed asyhnchrously rather than right away
-    // updateDateValues(state.schoolSwitch, state.jobSwitch);
   }
 
   function handleButton(e) {
@@ -197,8 +195,12 @@ const App = () => {
   }
 
   useEffect(() => {
-    updateDateValues(state.schoolSwitch, state.jobSwitch);
-  }, [state.schoolSwitch, state.jobSwitch]);
+    updateSchoolEnd(state.schoolSwitch);
+  }, [state.schoolSwitch]);
+
+  useEffect(() => {
+    updateJobEnd(state.jobSwitch);
+  }, [state.jobSwitch]);
 
   return (
     <div className="App">
