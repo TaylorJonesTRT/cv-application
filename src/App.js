@@ -137,16 +137,26 @@ const App = () => {
   function updateDateValues() {
     console.log('updateDateValues');
     if (state.schoolSwitch) {
-      setTimeout(() => {
-        setState({
-          ...state,
-          schoolEndDate: 'Present',
-        });
-      }, 3000);
+      setState({
+        ...state,
+        schoolEndDate: 'Present',
+      });
     } else {
       setState({
         ...state,
         schoolEndDate: '',
+      });
+    }
+
+    if (state.jobSwitch) {
+      setState({
+        ...state,
+        jobEndDate: 'Present',
+      });
+    } else {
+      setState({
+        ...state,
+        jobEndDate: '',
       });
     }
   }
@@ -156,7 +166,7 @@ const App = () => {
       setState({
         ...state,
         schoolSwitch: !state.schoolSwitch,
-      }, setTimeout(() => console.log(state.schoolSwitch), 5000));
+      });
     } else if (area === 'jobSwitch') {
       setState({
         ...state,
@@ -187,8 +197,8 @@ const App = () => {
   }
 
   useEffect(() => {
-
-});
+    updateDateValues(state.schoolSwitch, state.jobSwitch);
+  }, [state.schoolSwitch, state.jobSwitch]);
 
   return (
     <div className="App">
