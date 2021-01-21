@@ -178,19 +178,19 @@ const App = () => {
 
   function handleButton(e) {
     e.preventDefault();
-    // TODO: Add a if statement so that the button press on the preview screen will works
-    // TODO: Also fix the need of isValid here and clean up the code block.
     const isValid = validate();
     if (state.editView) {
-      if (!isValid) {
-        console.log('handleButton');
-        console.log(state);
-      } else {
+      if (isValid) {
         setState({
           ...state,
           editView: false,
         });
       }
+    } else {
+      setState({
+        ...state,
+        editView: true,
+      });
     }
   }
 

@@ -23,8 +23,7 @@ function HTMLView(props) {
         <p>{props.state.degree}</p>
         <p>{props.state.school}</p>
         <p>
-          From:
-          {props.state.schoolStartDate} | To: {props.state.schoolEndDate}
+          From: {props.state.schoolStartDate} | To: {props.state.schoolEndDate}
         </p>
       </div>
       <div className="preview section">
